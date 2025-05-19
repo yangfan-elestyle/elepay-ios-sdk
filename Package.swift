@@ -8,13 +8,13 @@ let package = Package(
   products: [
     .library(name: "ElepaySDK", targets: ["_ElepaySDK"]),
     .library(name: "ElepayRPayPlugin", targets: ["_ElepayRPayPlugin"]),
-    .library(name: "Elepay_ChinesePayments_Plugin", targets: ["_Elepay_ChinesePayments_Plugin"]),
+    .library(name: "ElepayChinesePaymentsPlugin", targets: ["_ElepayChinesePaymentsPlugin"]),
     .library(name: "ElepayStripePlugin", targets: ["_ElepayStripePlugin"]),
     .library(name: "ElepayStripeApplePayPlugin", targets: ["_ElepayStripeApplePayPlugin"]),
   ],
   targets: [
     .target(name: "_ElepaySDK", dependencies: ["ElepayCore", "ElepaySDK"]),
-    .target(name: "_Elepay_ChinesePayments_Plugin", dependencies: ["ElepayCore", "Elepay_ChinesePayments_Plugin"]),
+    .target(name: "_ElepayChinesePaymentsPlugin", dependencies: ["ElepayCore", "ElepayChinesePaymentsPlugin"]),
     .target(name: "_ElepayRPayPlugin", dependencies: ["ElepayCore", "ElepayRPayPlugin"]),
     .target(name: "_ElepayStripePlugin", dependencies: ["ElepayCore", "_Stripe", "ElepayStripePlugin"]),
     .target(name: "_ElepayStripeApplePayPlugin", dependencies: ["ElepayCore", "_StripeApplePay", "ElepayStripeApplePayPlugin"]),
@@ -24,7 +24,7 @@ let package = Package(
     .binaryTarget(name: "ElepayStripePlugin", path: "xcframework/elepay-plugins/ElepayStripePlugin.xcframework.zip"),
     .binaryTarget(name: "ElepayStripeApplePayPlugin", path: "xcframework/elepay-plugins/ElepayStripeApplePayPlugin.xcframework.zip"),
     .binaryTarget(name: "ElepayRPayPlugin", path: "xcframework/elepay-plugins/ElepayRPayPlugin.xcframework.zip"),
-    .binaryTarget(name: "Elepay_ChinesePayments_Plugin", path: "xcframework/elepay-plugins/Elepay_ChinesePayments_Plugin.xcframework.zip"),
+    .binaryTarget(name: "ElepayChinesePaymentsPlugin", path: "xcframework/elepay-plugins/ElepayChinesePaymentsPlugin.xcframework.zip"),
 
     // Stripe targets
     .target(

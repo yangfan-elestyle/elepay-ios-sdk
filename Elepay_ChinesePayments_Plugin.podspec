@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name             = 'Elepay_ChinesePayments_Plugin'
+  s.name             = 'ElepayChinesePaymentsPlugin'
   s.version          = '3.0.0'
   s.summary          = 'Elepay Chinese Payments Plugin for ElepaySDK. Integrates Chinese payment methods like Alipay, WeChat Pay.'
   s.description      = <<-DESC
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'ElepaySDK'
 
-  s.vendored_frameworks = 'xcframework/elepay-plugins/Elepay_ChinesePayments_Plugin.xcframework'
+  s.vendored_frameworks = 'xcframework/elepay-plugins/ElepayChinesePaymentsPlugin.xcframework'
   s.requires_arc = true
 
   s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
