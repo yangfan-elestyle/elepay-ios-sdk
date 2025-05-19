@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name             = 'ElepayStripeApplePay'
+  s.name             = 'ElepayStripeApplePayPlugin'
   s.version          = '2.0.0'
   s.summary          = 'Elepay Stripe Apple Pay Plugin for ElepaySDK. Integrates Apple Pay processing via Stripe.'
   s.description      = <<-DESC
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.vendored_frameworks = [
     'xcframework/stripe/StripeCore.xcframework',
     'xcframework/stripe/StripeApplePay.xcframework',
-    'xcframework/elepay-plugins/ElepayStripeApplePay.xcframework'
+    'xcframework/elepay-plugins/ElepayStripeApplePayPlugin.xcframework'
   ]
   s.requires_arc = true
 
