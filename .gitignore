@@ -211,3 +211,7 @@ output/
 **/*.framework
 
 xcbaselines
+
+Output/
+Output.zip
+release/

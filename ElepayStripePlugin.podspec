@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ElepayStripePlugin'
-  s.version          = '1.0.1'
+  s.version          = '1.1.2'
   s.summary          = 'Elepay Stripe Plugin for ElepaySDK. Integrates Stripe payment processing.'
   s.description      = <<-DESC
                          The Elepay iOS SDK makes it easy to build a stable and secure multi-channel payment experience in your iOS app.
@@ -11,22 +11,25 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://www.elepay.io'
   s.license          = { :type => "Copyright", :text => "Copyright ELESTYLE, Inc. All Rights Reserved." }
   s.author           = { "ELESTYLE, Inc." => "info@elestyle.jp" }
-  s.source           = { :git => 'https://github.com/elestyle/elepay-ios-sdk.git', :tag => s.version.to_s }
+  s.source           = { :http => "https://github.com/yangfan-elestyle/elepay-ios-sdk/releases/download/1.1.2/ElepayStripePlugin-pods.xcframework.zip", :sha256 => "d492d133b8b2dd8ccf6155614805928157ac28c298263cdeaf6f890b07b009fc" }
 
+  
   s.platform         = :ios, "13.0"
   s.swift_versions   = ['5.9']
 
   s.dependency 'ElepaySDK'
+
   s.vendored_frameworks = [
-    'xcframework/elepay-plugins/ElepayStripePlugin.xcframework',
-    'xcframework/stripe/StripeCore.xcframework',
-    'xcframework/stripe/Stripe.xcframework',
-    'xcframework/stripe/StripeApplePay.xcframework',
-    'xcframework/stripe/Stripe3DS2.xcframework',
-    'xcframework/stripe/StripeUICore.xcframework',
-    'xcframework/stripe/StripePayments.xcframework',
-    'xcframework/stripe/StripePaymentsUI.xcframework'
+    'ElepayStripePlugin.xcframework',
+    'StripeCore.xcframework',
+    'Stripe.xcframework',
+    'StripeApplePay.xcframework',
+    'Stripe3DS2.xcframework',
+    'StripeUICore.xcframework',
+    'StripePayments.xcframework',
+    'StripePaymentsUI.xcframework'
   ]
+
   s.requires_arc = true
 
 end 
