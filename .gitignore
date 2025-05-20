@@ -207,7 +207,7 @@ pkg/
 build.output
 output/
 
-**/*.xcframework
-**/*.framework
+# **/*.xcframework
+# **/*.framework
 
 xcbaselines
