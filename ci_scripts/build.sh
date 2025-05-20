@@ -6,7 +6,17 @@ PROJECT_ROOT=$(dirname "$SCRIPT_DIR")
 OUTPUT_DIR="$PROJECT_ROOT/Output"
 STRIPE_VENDOR_DIR="$PROJECT_ROOT/StripeVendor"
 
-RELEASE_DIR="$PROJECT_ROOT/release"
+if [ ! -d "$OUTPUT_DIR" ]; then
+  echo "ERROR: frameworks directory [$OUTPUT_DIR] is not found"
+  echo "ERROR: frameworks directory from [Elepay-iOS] Project by by Github CI Workflow Or Other Platforms"
+  exit 1
+fi
+
+# ============== Analyse Frameworks ==============
+
+echo "analysing frameworks..."
+
+RELEASE_DIR="$PROJECT_ROOT/Release"
 SUM_FILE="$RELEASE_DIR/sum.txt"
 
 mkdir -p "$RELEASE_DIR"
@@ -44,6 +54,8 @@ find "$RELEASE_DIR" -maxdepth 1 -name "*.zip" -exec unzip -q -o {} -d "$RELEASE_
 
 # ============== Update Cocoapods Podspec ==============
 
+echo "generating podspec files from template..."
+
 VERSION=$(cat "$PROJECT_ROOT/VERSION")
 
 update_podspec_from_template() {
@@ -77,6 +89,8 @@ update_podspec_from_template "ElepaySDK.podspec" "ElepaySDK.xcframework.zip"
 update_podspec_from_template "ElepayCore.podspec" "ElepayCore.xcframework.zip"
 
 # ============== Update Swift Package ==============
+
+echo "generating swift package from template..."
 
 update_swift_package() {
     template_file="$PROJECT_ROOT/Package.swift.template"
@@ -124,3 +138,5 @@ update_swift_package() {
 }
 
 update_swift_package
+
+echo "all done."
