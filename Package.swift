@@ -3,6 +3,19 @@
 
 import PackageDescription
 
+
+/*
+ElepayCore.xcframework.zip: 3e35c0c0c7f5d6859468ec4e91509a6cd9d35c57b814f76b29f264eb857f9584
+ElepaySDK.xcframework.zip: f28ce2f9dd36866958709e7a71b4a76e1b0bdd108bf0b1f9fc6c5ed930e385b3
+ElepayStripeApplePayPlugin.xcframework.zip: d353a59aa86bbad9a6df78bd92e2654c441570eb26a8af938b7bb27d8ef5cbc7
+ElepayStripePlugin.xcframework.zip: 58c2162cd887a20fb4104685773fa4c0392390a535ecd0f6c67c57912388968e
+ElepayChinesePaymentsPlugin.xcframework.zip: e0a0dbf01635548413d8c3dc51b5f967792fab61e852df46084937abb157f59d
+ElepayRPayPlugin.xcframework.zip: bd4dde553b20201f92de2b680440439485be7cbe6743a96f920929f5ae655a55
+*/
+
+let version = "1.0.3"
+let elepayRemoteUrl = "https://github.com/yangfan-elestyle/elepay-ios-sdk/releases/download/\(version)"
+
 let package = Package(
   name: "ElepayiOSSDK",
   products: [
@@ -19,12 +32,12 @@ let package = Package(
     .target(name: "_ElepayStripePlugin", dependencies: ["ElepayCore", "_Stripe", "ElepayStripePlugin"]),
     .target(name: "_ElepayStripeApplePayPlugin", dependencies: ["ElepayCore", "_StripeApplePay", "ElepayStripeApplePayPlugin"]),
 
-    .binaryTarget(name: "ElepayCore", path: "xcframework/elepay/ElepayCore.xcframework.zip"),
-    .binaryTarget(name: "ElepaySDK", path: "xcframework/elepay/ElepaySDK.xcframework.zip"),
-    .binaryTarget(name: "ElepayStripePlugin", path: "xcframework/elepay-plugins/ElepayStripePlugin.xcframework.zip"),
-    .binaryTarget(name: "ElepayStripeApplePayPlugin", path: "xcframework/elepay-plugins/ElepayStripeApplePayPlugin.xcframework.zip"),
-    .binaryTarget(name: "ElepayRPayPlugin", path: "xcframework/elepay-plugins/ElepayRPayPlugin.xcframework.zip"),
-    .binaryTarget(name: "ElepayChinesePaymentsPlugin", path: "xcframework/elepay-plugins/ElepayChinesePaymentsPlugin.xcframework.zip"),
+    .binaryTarget(name: "ElepayCore", url: "\(elepayRemoteUrl)/ElepayCore.xcframework.zip", checksum: "3e35c0c0c7f5d6859468ec4e91509a6cd9d35c57b814f76b29f264eb857f9584"),
+    .binaryTarget(name: "ElepaySDK", url: "\(elepayRemoteUrl)/ElepaySDK.xcframework.zip", checksum: "f28ce2f9dd36866958709e7a71b4a76e1b0bdd108bf0b1f9fc6c5ed930e385b3"),
+    .binaryTarget(name: "ElepayStripePlugin", url: "\(elepayRemoteUrl)/ElepayStripePlugin.xcframework.zip", checksum: "58c2162cd887a20fb4104685773fa4c0392390a535ecd0f6c67c57912388968e"),
+    .binaryTarget(name: "ElepayStripeApplePayPlugin", url: "\(elepayRemoteUrl)/ElepayStripeApplePayPlugin.xcframework.zip", checksum: "d353a59aa86bbad9a6df78bd92e2654c441570eb26a8af938b7bb27d8ef5cbc7"),
+    .binaryTarget(name: "ElepayRPayPlugin", url: "\(elepayRemoteUrl)/ElepayRPayPlugin.xcframework.zip", checksum: "bd4dde553b20201f92de2b680440439485be7cbe6743a96f920929f5ae655a55"),
+    .binaryTarget(name: "ElepayChinesePaymentsPlugin", url: "\(elepayRemoteUrl)/ElepayChinesePaymentsPlugin.xcframework.zip", checksum: "e0a0dbf01635548413d8c3dc51b5f967792fab61e852df46084937abb157f59d"),
 
     // Stripe targets
     .target(
