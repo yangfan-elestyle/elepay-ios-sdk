@@ -26,9 +26,10 @@ find "$RELEASE_DIR" -maxdepth 1 -name "*.zip" -exec unzip -q -o {} -d "$RELEASE_
     Stripe.xcframework \
     Stripe3DS2.xcframework \
     StripeCore.xcframework \
+    StripeApplePay.xcframework \
+    StripeUICore.xcframework \
     StripePayments.xcframework \
-    StripePaymentsUI.xcframework \
-    StripeUICore.xcframework)
+    StripePaymentsUI.xcframework)
 
 (cd "$RELEASE_DIR" && find . -mindepth 1 -maxdepth 1 ! -name "*.zip" -exec rm -rf {} + 2>/dev/null)
 
