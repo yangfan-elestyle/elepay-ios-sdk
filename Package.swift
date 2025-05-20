@@ -28,7 +28,7 @@ Stripe3DS2.xcframework.zip: 31e0fb219f249a830b2b8d18afd24c9e84b626d9684e7e7f27eb
 Stripe.xcframework.zip: e12813e338eaea100a68642b62b04d25f3c5c39fd925b6a95f58c3fa0ad386fd
 */
 
-let version = "1.0.3"
+let version = "1.0.4"
 let elepayUrl = "https://github.com/yangfan-elestyle/elepay-ios-sdk/releases/download/\(version)"
 let stripeUrl = "https://github.com/yangfan-elestyle/elestyle-stripe-ios/releases/download/24.13.1"
 
