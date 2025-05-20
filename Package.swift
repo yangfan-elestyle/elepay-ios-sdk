@@ -3,7 +3,7 @@
 
 import PackageDescription
 
-let version = "1.1.2"
+let version = "1.1.4"
 let r = "https://github.com/yangfan-elestyle/elepay-ios-sdk/releases/download/\(version)"
 
 let __ElepayCore = "3e35c0c0c7f5d6859468ec4e91509a6cd9d35c57b814f76b29f264eb857f9584"
