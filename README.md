@@ -1,26 +1,37 @@
-# Elepay iOS SDK Release
+**elepay iOS SDK** is made for your iOS Apps to easily import elepay multi-payment platform. For more details, please access the link below.
+[→ Import Guide for elepay iOS SDK](https://developer.elepay.io/docs/ios-sdk)
 
----
+## System Requirement
 
-# Elepay iOS SDK 发布流程
+iOS 13.0 and above, Xcode 13 and above
 
-## Elepay iOS 源码编译
+> Starting April 24, 2025, apps uploaded to the App Store must be built with Xcode 16 or later. [via](https://developer.apple.com/news/upcoming-requirements/?id=02212025a)
 
-当前仓库为 Elepay iOS SDK 外部分发仓库，不提供源码。  
-源码仓库中通过 CI 打包，获取 `Release-<VERSION>.zip` 产物。
+> (ver 1.7.6 and below：iOS 9.0 and above, Xcode 11.3 and above)  
+> (ver 2.3.5 and below: iOS 10 and above, Xcode 11.4 and above)  
+> (ver 3.5.0 and below: iOS 11 and above, Xcode 13 and above)
+> (ver 4.4.0 and below: iOS 12 and above, Xcode 13 and above)
 
-## template generate
+## Swift Example App
 
-获取 `Release-<VERSION>.zip` 产物并拖动到当前工程后，通过 `/ci_scripts/build.sh` 脚本生成包管理配置文件。
+You can download the usage sample for **elepay iOS SDK** from [here](https://github.com/elestyle/elepay-ios-demo-swift).
 
-注意事项：确保当前工程 VERSION 文件内容与 zip 产物的后缀一致。
+## Objective-C Bridge Example
 
-## 发布流程
+If you are using **elepay iOS SDK** in Objective-C project, please check [here](https://github.com/elestyle/elepay-ios-demo-swift/blob/master/ELEPayObjectiveC/ElePayObjCBridge.swift) for the bridge example.
 
-1. 确认版本号
-2. 提交代码到远程
-3. Release Swift Package
-   - 打 Tag
-   - 把 zip 解压后的产物上传到 Release 附件中
-4. Release Cocoapods
-   - 执行 `/ci_scripts/cocoapods-publish.sh` 脚本
+### elepay iOS SDK Update History
+
+- v1.1.5 is the final version which compiled with Swift 4.2.1.
+- From v1.2 the SDK is compiled with Swift 5.0.1.
+- From v1.3.2 the SDK is compiled with Swift 5.1.
+- From v1.6.0 the SDK is compiled with Swift 5.1.2.
+- From v1.7.1, the SDK is compiled with "Build for Distribution" set to YES, so you can forget the Swift version from now on.
+- From v2.0, the SDK is distributed in XCFramework format.
+  Also the Framework name, module name and class name has been changed.
+  `ElePay.framework → ElepaySDK.xcframework, ElePay → ElepaySDK, ElePay → Elepay`
+- From v3.0.0, iOS 10 is no longer supported.
+- v3.1.1 add SPM (Swift Package Manager) support. NOTE: This version will not be released to Cocoapods, use v3.1.0 instead.
+- v4.0.0 is build by Xcode 14 (Swift 5.7), from this version, iOS 11 is no longer supported. Also Bitcode is no longer supported.
+- v4.1.0 is build by Xcode 14.3 (Swift 5.8)
+- v4.4.0 is build by Xcode 16.2 (Swift 6.0.3), add privacy manifests.
