@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.source           = { :http => "https://github.com/yangfan-elestyle/elepay-ios-sdk/releases/download/1.1.4/ElepayChinesePaymentsPlugin.xcframework.zip", :sha256 => "e0a0dbf01635548413d8c3dc51b5f967792fab61e852df46084937abb157f59d" }
 
   s.platform         = :ios, "13.0"
-  s.swift_versions   = ['5.9']
+  s.swift_versions   = ['5.10']
 
   s.dependency 'ElepaySDK'
 
