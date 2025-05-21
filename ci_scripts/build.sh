@@ -1,81 +1,47 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
-PROJECT_ROOT=$(dirname "$SCRIPT_DIR")
+ROOT_DIR=$(dirname "$SCRIPT_DIR")
 
-OUTPUT_DIR="$PROJECT_ROOT/Output"
-STRIPE_VENDOR_DIR="$PROJECT_ROOT/StripeVendor"
+VERSION_FILE="$ROOT_DIR/VERSION"
+VERSION=$(head -n 1 "$VERSION_FILE" | tr -d '[:space:]')
 
-if [ ! -d "$OUTPUT_DIR" ]; then
-  echo "ERROR: frameworks directory [$OUTPUT_DIR] is not found"
-  echo "ERROR: frameworks directory from [Elepay-iOS] Project by by Github CI Workflow Or Other Platforms"
-  exit 1
+RELEASE_ZIP_PATTERN="$ROOT_DIR/Release-$VERSION.zip"
+RELEASE_DIR="$ROOT_DIR/Release-$VERSION"
+
+if [ -f "$RELEASE_ZIP_PATTERN" ]; then
+    unzip -o -q "$RELEASE_ZIP_PATTERN" -d "$RELEASE_DIR"
 fi
 
-# ============== Analyse Frameworks ==============
-
-echo "analysing frameworks..."
-
-RELEASE_DIR="$PROJECT_ROOT/Release"
 SUM_FILE="$RELEASE_DIR/sum.txt"
-
-mkdir -p "$RELEASE_DIR"
-
-find "$OUTPUT_DIR" -name "*.zip" -exec cp {} "$RELEASE_DIR/" \; 2>/dev/null
-find "$STRIPE_VENDOR_DIR" -name "*.zip" -exec cp {} "$RELEASE_DIR/" \; 2>/dev/null
-
-find "$RELEASE_DIR" -maxdepth 1 -name "*.zip" -exec unzip -q -o {} -d "$RELEASE_DIR" -x "__MACOSX/*" \; 2>/dev/null
-
-(cd "$RELEASE_DIR" && zip -q -r ElepayStripeApplePayPlugin-pods.xcframework.zip \
-    ElepayStripeApplePayPlugin.xcframework \
-    StripeCore.xcframework \
-    StripeApplePay.xcframework)
-
-(cd "$RELEASE_DIR" && zip -q -r ElepayStripePlugin-pods.xcframework.zip \
-    ElepayStripePlugin.xcframework \
-    Stripe.xcframework \
-    Stripe3DS2.xcframework \
-    StripeCore.xcframework \
-    StripeApplePay.xcframework \
-    StripeUICore.xcframework \
-    StripePayments.xcframework \
-    StripePaymentsUI.xcframework)
-
-(cd "$RELEASE_DIR" && find . -mindepth 1 -maxdepth 1 ! -name "*.zip" -exec rm -rf {} + 2>/dev/null)
-
-> "$SUM_FILE"
-
-(cd "$RELEASE_DIR" && \
-    find . -maxdepth 1 -name "*.zip" -print0 | while IFS= read -r -d $'\0' zip_file; do \
-        local_zip_file=$(basename "$zip_file")
-        checksum=$(swift package compute-checksum "$local_zip_file")
-        echo "$local_zip_file: $checksum" >> "$SUM_FILE"
-    done)
+if [ ! -f "$SUM_FILE" ]; then
+    echo "ERROR: CI Release directory($RELEASE_DIR) and sum file(sum.txt) is not found"
+    echo "ERROR: All frameworks and sum.txt file from [Elepay-iOS] Project by by Github CI Workflow Or Other Platforms"
+    exit 1
+fi
 
 # ============== Update Cocoapods Podspec ==============
 
 echo "generating podspec files from template..."
 
-VERSION=$(cat "$PROJECT_ROOT/VERSION")
-
 update_podspec_from_template() {
     base_name=$1
     zip_file=$2
-    
-    template_file="$PROJECT_ROOT/${base_name}.template"
-    podspec_file="$PROJECT_ROOT/${base_name}"
-    
+
+    template_file="$ROOT_DIR/${base_name}.template"
+    podspec_file="$ROOT_DIR/${base_name}"
+
     if [ ! -f "$template_file" ]; then
         return 1
     fi
-    
+
     checksum=$(grep "$zip_file:" "$SUM_FILE" | cut -d: -f2 | tr -d ' ')
-    
+
     if [ -n "$checksum" ]; then
         content=$(cat "$template_file")
         content="${content//<version>/$VERSION}"
         content="${content//<sha256>/$checksum}"
-        echo "$content" > "$podspec_file"
+        echo "$content" >"$podspec_file"
     else
         echo "Error: Cannot find checksum for $zip_file"
     fi
@@ -93,24 +59,24 @@ update_podspec_from_template "ElepayCore.podspec" "ElepayCore.xcframework.zip"
 echo "generating swift package from template..."
 
 update_swift_package() {
-    template_file="$PROJECT_ROOT/Package.swift.template"
-    package_file="$PROJECT_ROOT/Package.swift"
-    
+    template_file="$ROOT_DIR/Package.swift.template"
+    package_file="$ROOT_DIR/Package.swift"
+
     content=$(cat "$template_file")
     content="${content//<version>/$VERSION}"
-    
+
     replace_checksum() {
         local zip_file="$1"
         local placeholder="$2"
         local checksum=$(grep "$zip_file:" "$SUM_FILE" | cut -d: -f2 | tr -d ' ')
-        
+
         if [ -n "$checksum" ]; then
             content="${content//$placeholder/$checksum}"
         else
             echo "Warning: Cannot find checksum for $zip_file"
         fi
     }
-    
+
     # Elepay组件校验和
     replace_checksum "ElepayCore.xcframework.zip" "<ElepayCore_sha256>"
     replace_checksum "ElepaySDK.xcframework.zip" "<ElepaySDK_sha256>"
@@ -118,7 +84,7 @@ update_swift_package() {
     replace_checksum "ElepayStripeApplePayPlugin.xcframework.zip" "<ElepayStripeApplePayPlugin_sha256>"
     replace_checksum "ElepayRPayPlugin.xcframework.zip" "<ElepayRPayPlugin_sha256>"
     replace_checksum "ElepayChinesePaymentsPlugin.xcframework.zip" "<ElepayChinesePaymentsPlugin_sha256>"
-    
+
     # Stripe组件校验和
     replace_checksum "Stripe.xcframework.zip" "<Stripe_sha256>"
     replace_checksum "StripeCore.xcframework.zip" "<StripeCore_sha256>"
@@ -133,10 +99,30 @@ update_swift_package() {
     replace_checksum "Stripe3DS2.xcframework.zip" "<Stripe3DS2_sha256>"
     replace_checksum "StripeUICore.xcframework.zip" "<StripeUICore_sha256>"
     replace_checksum "StripeCameraCore.xcframework.zip" "<StripeCameraCore_sha256>"
-    
-    echo "$content" > "$package_file"
+
+    echo "$content" >"$package_file"
 }
 
 update_swift_package
 
-echo "all done."
+TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+NEW_RELEASE_DIR_PATH="$ROOT_DIR/Release-$VERSION-$TIMESTAMP"
+
+echo "" # Add a blank line for separation
+
+if mv "$RELEASE_DIR" "$NEW_RELEASE_DIR_PATH"; then
+    echo "------------------------------------------------------------------------"
+    echo "Build artifacts finalized in: $NEW_RELEASE_DIR_PATH"
+    echo "------------------------------------------------------------------------"
+    echo "The Release directory has been renamed with timestamp."
+
+    echo ""
+    echo "Next steps:"
+    echo "  0. Git commit and push the changed file."
+    echo "  1. Create a new release on GitHub."
+    echo "  2. Upload all contents of '$NEW_RELEASE_DIR_PATH' to this GitHub release."
+    echo "  3. (Optional) You can delete the '$NEW_RELEASE_DIR_PATH' directory and '$RELEASE_ZIP_PATTERN' zip file locally after uploading."
+    echo "------------------------------------------------------------------------"
+else
+    echo "Error: Failed to rename the Release directory"
+fi
