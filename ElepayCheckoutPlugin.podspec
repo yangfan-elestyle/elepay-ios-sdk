@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ElepayCheckoutPlugin'
-  s.version          = '4.9.2'
+  s.version          = '5.0.0'
   s.summary          = 'Elepay Checkout Plugin for ElepaySDK. Integrates Checkout payment processing.'
   s.description      = <<-DESC
                          The Elepay iOS SDK makes it easy to build a stable and secure multi-channel payment experience in your iOS app.
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://www.elepay.io'
   s.license          = { :type => "Copyright", :text => "Copyright ELESTYLE, Inc. All Rights Reserved." }
   s.author           = { "ELESTYLE, Inc." => "info@elestyle.jp" }
-  s.source           = { :http => "https://github.com/yangfan-elestyle/elepay-ios-sdk/releases/download/4.9.2/ElepayCheckoutPlugin.xcframework.zip", :sha256 => "51b93f1570498caccb571294a77323f8ffc0f3c7e6da7356b98e1c191a72e205" }
+  s.source           = { :http => "https://github.com/yangfan-elestyle/elepay-ios-sdk/releases/download/5.0.0/ElepayCheckoutPlugin.xcframework.zip", :sha256 => "33762cd5b4919e2f72f36c3bf9661cc548e4a29fee7072acdad767d45742046b" }
 
   
   s.platform         = :ios, "13.0"
