@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ElepayRPayPlugin'
-  s.version          = '5.0.0'
+  s.version          = '5.0.1'
   s.summary          = 'Elepay RPay Plugin for ElepaySDK. Integrates RPay payment processing.'
   s.description      = <<-DESC
                          The Elepay iOS SDK makes it easy to build a stable and secure multi-channel payment experience in your iOS app.
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://www.elepay.io'
   s.license          = { :type => "Copyright", :text => "Copyright ELESTYLE, Inc. All Rights Reserved." }
   s.author           = { "ELESTYLE, Inc." => "info@elestyle.jp" }
-  s.source           = { :http => "https://github.com/yangfan-elestyle/elepay-ios-sdk/releases/download/5.0.0/ElepayRPayPlugin.xcframework.zip", :sha256 => "0449d4e5d53b3dbbad0a429c2dc0ac61d2da0f13972f6ef4b0408b7493c4c26d" }
+  s.source           = { :http => "https://github.com/yangfan-elestyle/elepay-ios-sdk/releases/download/5.0.1/ElepayRPayPlugin.xcframework.zip", :sha256 => "f4a939247e0a697aa282aeb1ffc20faceff8237467d0990ce15728bbfed71ba8" }
 
   s.platform         = :ios, "13.0"
   s.swift_versions   = ['5.10']

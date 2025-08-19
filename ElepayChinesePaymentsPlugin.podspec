@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ElepayChinesePaymentsPlugin'
-  s.version          = '5.0.0'
+  s.version          = '5.0.1'
   s.summary          = 'Elepay Chinese Payments Plugin for ElepaySDK. Integrates Chinese payment methods like Alipay, WeChat Pay.'
   s.description      = <<-DESC
                          The Elepay iOS SDK makes it easy to build a stable and secure multi-channel payment experience in your iOS app.
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://www.elepay.io'
   s.license          = { :type => "Copyright", :text => "Copyright ELESTYLE, Inc. All Rights Reserved." }
   s.author           = { "ELESTYLE, Inc." => "info@elestyle.jp" }
-  s.source           = { :http => "https://github.com/yangfan-elestyle/elepay-ios-sdk/releases/download/5.0.0/ElepayChinesePaymentsPlugin.xcframework.zip", :sha256 => "f63bf3ce3be6823e168672bd23175c34399d546cbea8ada77f26807a6927e306" }
+  s.source           = { :http => "https://github.com/yangfan-elestyle/elepay-ios-sdk/releases/download/5.0.1/ElepayChinesePaymentsPlugin.xcframework.zip", :sha256 => "6cf5ea72da0120e1ac472dbd5374dcc168dd2fcd3b1baef9c12d37b8875e2aa1" }
 
   s.platform         = :ios, "13.0"
   s.swift_versions   = ['5.10']

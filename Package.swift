@@ -3,16 +3,16 @@
 
 import PackageDescription
 
-let version = "5.0.0"
+let version = "5.0.1"
 let r = "https://github.com/yangfan-elestyle/elepay-ios-sdk/releases/download/\(version)"
 
-let __ElepayCore = "1bff172f4e0a811ace6f75b925d5b995f5cf34b7bf80dc120291c4feae8e4880"
-let __ElepaySDK = "c7088f2a9a5d82e5790b43baf895d41f1d0257e816311c004eb8453dd2dbf31c"
-let __ElepayStripePlugin = "e6db453e350dbe90576be9d1acc660c02f42e8e9ab1aba4322a9c095d0082c56"
-let __ElepayStripeApplePayPlugin = "fa4043e1de04edf8978c6f075ab90290c70d0ed82c28042dec0a01ee05b2affb"
-let __ElepayRPayPlugin = "0449d4e5d53b3dbbad0a429c2dc0ac61d2da0f13972f6ef4b0408b7493c4c26d"
-let __ElepayChinesePaymentsPlugin = "f63bf3ce3be6823e168672bd23175c34399d546cbea8ada77f26807a6927e306"
-let __ElepayCheckoutPlugin = "33762cd5b4919e2f72f36c3bf9661cc548e4a29fee7072acdad767d45742046b"
+let __ElepayCore = "e832a62236c8fcb15d54f12728629935e0f78a5a61dfe0dea17d2872ff788950"
+let __ElepaySDK = "5775e897143b0366ac40d77ad5b314205cbcc70fbda4af46025d1e4a24ed3b50"
+let __ElepayStripePlugin = "c0b887bfc88afd8b45b15dfbd2cd82c7f00d905fb6a81f99ecf484e496b814e7"
+let __ElepayStripeApplePayPlugin = "7e726090a03e084f28d3a399bace6a2d4e4dbb93a4b06a45e0ac46cfa2ecaf9a"
+let __ElepayRPayPlugin = "f4a939247e0a697aa282aeb1ffc20faceff8237467d0990ce15728bbfed71ba8"
+let __ElepayChinesePaymentsPlugin = "6cf5ea72da0120e1ac472dbd5374dcc168dd2fcd3b1baef9c12d37b8875e2aa1"
+let __ElepayCheckoutPlugin = "bf05076ab00c21321b29408116b967cf275c5993fb29481b71b66fd0a3e1f35c"
 
 let __Stripe = "e12813e338eaea100a68642b62b04d25f3c5c39fd925b6a95f58c3fa0ad386fd"
 let __StripeCore = "91f3e1ff0e6e82d64f75cf50ed3cce01e90c3a04e2fb1c75cac9f583210e34be"
