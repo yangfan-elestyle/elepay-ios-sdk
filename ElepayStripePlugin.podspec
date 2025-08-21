@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ElepayStripePlugin'
-  s.version          = '5.0.1'
+  s.version          = '5.0.2'
   s.summary          = 'Elepay Stripe Plugin for ElepaySDK. Integrates Stripe payment processing.'
   s.description      = <<-DESC
                          The Elepay iOS SDK makes it easy to build a stable and secure multi-channel payment experience in your iOS app.
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://www.elepay.io'
   s.license          = { :type => "Copyright", :text => "Copyright ELESTYLE, Inc. All Rights Reserved." }
   s.author           = { "ELESTYLE, Inc." => "info@elestyle.jp" }
-  s.source           = { :http => "https://github.com/yangfan-elestyle/elepay-ios-sdk/releases/download/5.0.1/ElepayStripePlugin-pods.xcframework.zip", :sha256 => "039b57a70076cef340fb65d656712f90bed080d16043aeac6584cf2904692c4d" }
+  s.source           = { :http => "https://github.com/yangfan-elestyle/elepay-ios-sdk/releases/download/5.0.2/ElepayStripePlugin-pods.xcframework.zip", :sha256 => "eee0f9a93dc709b65cefd51d1ad0bbe701c29caee49ee73f8386720cdf9940bb" }
 
   
   s.platform         = :ios, "13.0"
